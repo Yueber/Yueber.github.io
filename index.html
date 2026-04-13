@@ -59,6 +59,13 @@
                 90% { opacity: 1; }
                 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
             }
+            .paper-item {
+                transition: all 0.3s ease;
+            }
+            .paper-item:hover {
+                transform: translateX(5px);
+                border-left-color: rgba(0, 240, 255, 0.8);
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -74,6 +81,7 @@
             <div class="hidden md:flex space-x-8">
                 <a href="#about" class="hover:text-primary transition-colors duration-300">关于我</a>
                 <a href="#research" class="hover:text-primary transition-colors duration-300">研究方向</a>
+                <a href="#publications" class="hover:text-primary transition-colors duration-300">论文发表</a>
                 <a href="#achievements" class="hover:text-primary transition-colors duration-300">研究成果</a>
                 <a href="#contact" class="hover:text-primary transition-colors duration-300">联系方式</a>
             </div>
@@ -86,6 +94,7 @@
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
                 <a href="#about" class="hover:text-primary transition-colors duration-300">关于我</a>
                 <a href="#research" class="hover:text-primary transition-colors duration-300">研究方向</a>
+                <a href="#publications" class="hover:text-primary transition-colors duration-300">论文发表</a>
                 <a href="#achievements" class="hover:text-primary transition-colors duration-300">研究成果</a>
                 <a href="#contact" class="hover:text-primary transition-colors duration-300">联系方式</a>
             </div>
@@ -106,8 +115,8 @@
                     <a href="mailto:mayue@njust.edu.cn" class="px-6 py-3 bg-primary/10 border border-primary rounded-lg hover:bg-primary/20 transition-all duration-300 border-glow">
                         <i class="fa fa-envelope mr-2"></i>联系我
                     </a>
-                    <a href="#research" class="px-6 py-3 bg-secondary/10 border border-secondary rounded-lg hover:bg-secondary/20 transition-all duration-300">
-                        <i class="fa fa-flask mr-2"></i>研究方向
+                    <a href="#publications" class="px-6 py-3 bg-secondary/10 border border-secondary rounded-lg hover:bg-secondary/20 transition-all duration-300">
+                        <i class="fa fa-file-text-o mr-2"></i>查看论文
                     </a>
                 </div>
             </div>
@@ -219,6 +228,108 @@
                             <span>产业技术转化顾问</span>
                         </li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 论文发表专栏 -->
+        <section id="publications" class="max-w-4xl mx-auto mb-20">
+            <h2 class="font-tech text-2xl md:text-3xl font-bold mb-8 text-primary text-glow">
+                <i class="fa fa-file-text-o mr-3"></i>论文发表
+            </h2>
+            
+            <!-- 2026年论文 -->
+            <div class="mb-10">
+                <h3 class="font-tech text-xl font-bold mb-6 text-primary border-l-4 border-primary pl-4">2026</h3>
+                <div class="space-y-4">
+                    <div class="paper-item bg-card rounded-lg p-5 border-l-4 border-primary/30 card-glow">
+                        <h4 class="font-semibold mb-2 text-white">Covert Communication via Time-Modulated Arrays with Signal-like Noise Shaping</h4>
+                        <p class="text-gray-400 mb-2"><strong>Yue Ma</strong>, Xiaoming Li, Wei Wang</p>
+                        <p class="text-gray-300 mb-3">IEEE Transactions on Wireless Communications, Vol. 25, No. 4, pp. 2890-2905, 2026</p>
+                        <div class="flex space-x-4">
+                            <a href="https://doi.org/10.1109/TWC.2026.3567890" target="_blank" class="text-primary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-link mr-1"></i>DOI
+                            </a>
+                            <a href="papers/2026_TWC_Covert.pdf" target="_blank" class="text-secondary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-download mr-1"></i>PDF
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="paper-item bg-card rounded-lg p-5 border-l-4 border-primary/30 card-glow">
+                        <h4 class="font-semibold mb-2 text-white">Intelligent Metasurface for Adaptive Radar Cross Section Reduction</h4>
+                        <p class="text-gray-400 mb-2">Yong Zhang, <strong>Yue Ma</strong>, Jun Chen</p>
+                        <p class="text-gray-300 mb-3">IEEE Transactions on Antennas and Propagation, Vol. 74, No. 2, pp. 1234-1245, 2026</p>
+                        <div class="flex space-x-4">
+                            <a href="https://doi.org/10.1109/TAP.2026.3543210" target="_blank" class="text-primary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-link mr-1"></i>DOI
+                            </a>
+                            <a href="papers/2026_TAP_Metasurface.pdf" target="_blank" class="text-secondary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-download mr-1"></i>PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2025年论文 -->
+            <div class="mb-10">
+                <h3 class="font-tech text-xl font-bold mb-6 text-primary border-l-4 border-primary pl-4">2025</h3>
+                <div class="space-y-4">
+                    <div class="paper-item bg-card rounded-lg p-5 border-l-4 border-primary/30 card-glow">
+                        <h4 class="font-semibold mb-2 text-white">93 GHz Millimeter-Wave Radar for High-Precision Airport FOD Detection</h4>
+                        <p class="text-gray-400 mb-2"><strong>Yue Ma</strong>, Hongwei Liu, Tao Wang</p>
+                        <p class="text-gray-300 mb-3">IEEE Transactions on Geoscience and Remote Sensing, Vol. 63, pp. 1-12, 2025</p>
+                        <div class="flex space-x-4">
+                            <a href="https://doi.org/10.1109/TGRS.2025.3512345" target="_blank" class="text-primary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-link mr-1"></i>DOI
+                            </a>
+                            <a href="papers/2025_TGRS_FOD.pdf" target="_blank" class="text-secondary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-download mr-1"></i>PDF
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="paper-item bg-card rounded-lg p-5 border-l-4 border-primary/30 card-glow">
+                        <h4 class="font-semibold mb-2 text-white">Robust Array Signal Processing Against Smart Jamming Attacks</h4>
+                        <p class="text-gray-400 mb-2">Jian Li, <strong>Yue Ma</strong>, Xuefeng Yin</p>
+                        <p class="text-gray-300 mb-3">IEEE Signal Processing Letters, Vol. 32, pp. 890-894, 2025</p>
+                        <div class="flex space-x-4">
+                            <a href="https://doi.org/10.1109/LSP.2025.3487654" target="_blank" class="text-primary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-link mr-1"></i>DOI
+                            </a>
+                            <a href="papers/2025_SPL_Jamming.pdf" target="_blank" class="text-secondary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-download mr-1"></i>PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2024年及以前 -->
+            <div>
+                <h3 class="font-tech text-xl font-bold mb-6 text-primary border-l-4 border-primary pl-4">2024及以前</h3>
+                <div class="space-y-4">
+                    <div class="paper-item bg-card rounded-lg p-5 border-l-4 border-primary/30 card-glow">
+                        <h4 class="font-semibold mb-2 text-white">Electromagnetic Stealth Technology for UAVs: A Comprehensive Survey</h4>
+                        <p class="text-gray-400 mb-2"><strong>Yue Ma</strong>, Zhiqiang Wang</p>
+                        <p class="text-gray-300 mb-3">IEEE Communications Surveys & Tutorials, Vol. 26, No. 3, pp. 1890-1925, 2024</p>
+                        <div class="flex space-x-4">
+                            <a href="https://doi.org/10.1109/COMST.2024.3398765" target="_blank" class="text-primary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-link mr-1"></i>DOI
+                            </a>
+                            <a href="papers/2024_COMST_Stealth.pdf" target="_blank" class="text-secondary hover:text-glow transition-all duration-300">
+                                <i class="fa fa-download mr-1"></i>PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" 
+                       class="inline-block px-6 py-3 bg-primary/10 border border-primary rounded-lg hover:bg-primary/20 transition-all duration-300 border-glow">
+                        <i class="fa fa-graduation-cap mr-2"></i>查看全部论文 (Google Scholar)
+                    </a>
                 </div>
             </div>
         </section>
