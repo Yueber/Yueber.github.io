@@ -91,8 +91,9 @@
             body {
                 background-color: #050712;
             }
-            /* 语言切换控制 */
-            .lang-zh { display: none; }
+            /* 语言切换核心修复 */
+            [data-lang="en"] .content-zh { display: none !important; }
+            [data-lang="zh"] .content-en { display: none !important; }
             .lang-active {
                 color: #00f0f8 !important;
                 text-shadow: 0 0 4px #00f0f8;
@@ -103,7 +104,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="text-gray-200 min-h-screen overflow-x-hidden font-cyber">
+<body class="text-gray-200 min-h-screen overflow-x-hidden font-cyber" data-lang="en">
     <!-- 全局弱化扫描线 -->
     <div class="fixed inset-0 scan-line pointer-events-none z-10 opacity-60"></div>
     <!-- 柔和动态光晕 -->
@@ -117,33 +118,31 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-cyberCyan title-glow-low">YUE MA</a>
             
-            <!-- 英文导航 -->
-            <div class="hidden md:flex space-x-8 items-center lang-en">
-                <a href="#about" class="hover:text-cyberCyan transition-colors duration-300 relative">About<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#research" class="hover:text-cyberCyan transition-colors duration-300 relative">Research<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#pub" class="hover:text-cyberCyan transition-colors duration-300 relative">Publications<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#ach" class="hover:text-cyberCyan transition-colors duration-300 relative">Highlights<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#contact" class="hover:text-cyberCyan transition-colors duration-300 relative">Contact<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+            <!-- 桌面端菜单 -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <!-- 英文导航 -->
+                <div class="content-en flex space-x-8">
+                    <a href="#about" class="hover:text-cyberCyan transition-colors duration-300 relative">About<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#research" class="hover:text-cyberCyan transition-colors duration-300 relative">Research<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#pub" class="hover:text-cyberCyan transition-colors duration-300 relative">Publications<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#ach" class="hover:text-cyberCyan transition-colors duration-300 relative">Highlights<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#contact" class="hover:text-cyberCyan transition-colors duration-300 relative">Contact<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                </div>
+
+                <!-- 中文导航 -->
+                <div class="content-zh flex space-x-8">
+                    <a href="#about" class="hover:text-cyberCyan transition-colors duration-300 relative">关于我<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#research" class="hover:text-cyberCyan transition-colors duration-300 relative">研究方向<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#pub" class="hover:text-cyberCyan transition-colors duration-300 relative">代表作<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#ach" class="hover:text-cyberCyan transition-colors duration-300 relative">研究成果<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                    <a href="#contact" class="hover:text-cyberCyan transition-colors duration-300 relative">联系方式<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                </div>
+
                 <!-- 语言切换按钮 -->
                 <div class="flex items-center space-x-2 ml-4 border-l border-cyberCyan/30 pl-4">
                     <button id="langEnBtn" class="lang-active hover:opacity-80 transition-opacity">EN</button>
                     <span class="text-gray-500">/</span>
                     <button id="langZhBtn" class="text-gray-400 hover:text-cyberCyan transition-colors">中文</button>
-                </div>
-            </div>
-
-            <!-- 中文导航 -->
-            <div class="hidden md:flex space-x-8 items-center lang-zh">
-                <a href="#about" class="hover:text-cyberCyan transition-colors duration-300 relative">关于我<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#research" class="hover:text-cyberCyan transition-colors duration-300 relative">研究方向<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#pub" class="hover:text-cyberCyan transition-colors duration-300 relative">代表作<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#ach" class="hover:text-cyberCyan transition-colors duration-300 relative">研究成果<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <a href="#contact" class="hover:text-cyberCyan transition-colors duration-300 relative">联系方式<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
-                <!-- 语言切换按钮 -->
-                <div class="flex items-center space-x-2 ml-4 border-l border-cyberCyan/30 pl-4">
-                    <button id="langEnBtnZh" class="text-gray-400 hover:text-cyberCyan transition-colors">EN</button>
-                    <span class="text-gray-500">/</span>
-                    <button id="langZhBtnZh" class="lang-active hover:opacity-80 transition-opacity">中文</button>
                 </div>
             </div>
 
@@ -160,20 +159,16 @@
             </div>
         </div>
 
-        <!-- 移动端菜单（英文） -->
-        <div id="mobileMenuEn" class="hidden md:hidden bg-cyberCard/95 border-b border-cyberCyan/20 lang-en">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cyberCard/95 border-b border-cyberCyan/20">
+            <div class="content-en container mx-auto px-4 py-3 flex flex-col space-y-4">
                 <a href="#about" class="hover:text-cyberCyan transition-colors">About</a>
                 <a href="#research" class="hover:text-cyberCyan transition-colors">Research</a>
                 <a href="#pub" class="hover:text-cyberCyan transition-colors">Publications</a>
                 <a href="#ach" class="hover:text-cyberCyan transition-colors">Highlights</a>
                 <a href="#contact" class="hover:text-cyberCyan transition-colors">Contact</a>
             </div>
-        </div>
-
-        <!-- 移动端菜单（中文） -->
-        <div id="mobileMenuZh" class="hidden md:hidden bg-cyberCard/95 border-b border-cyberCyan/20 lang-zh">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+            <div class="content-zh container mx-auto px-4 py-3 flex flex-col space-y-4">
                 <a href="#about" class="hover:text-cyberCyan transition-colors">关于我</a>
                 <a href="#research" class="hover:text-cyberCyan transition-colors">研究方向</a>
                 <a href="#pub" class="hover:text-cyberCyan transition-colors">代表作</a>
@@ -183,11 +178,11 @@
         </div>
     </nav>
 
-    <!-- 头部（双语） -->
+    <!-- 头部 -->
     <header class="relative pt-32 pb-24">
         <div class="container mx-auto px-4 text-center relative z-20">
             <!-- 英文头部 -->
-            <div class="lang-en">
+            <div class="content-en">
                 <div class="mb-3">
                     <span class="px-4 py-1 border border-cyberCyan/30 cyber-cut text-cyberCyan text-sm">
                         <i class="fa fa-microchip mr-2"></i>Key Lab of Near-Range RF Perception Chips & Microsystems, MOE
@@ -213,7 +208,7 @@
             </div>
 
             <!-- 中文头部 -->
-            <div class="lang-zh">
+            <div class="content-zh">
                 <div class="mb-3">
                     <span class="px-4 py-1 border border-cyberCyan/30 cyber-cut text-cyberCyan text-sm">
                         <i class="fa fa-microchip mr-2"></i>近程射频感知芯片与微系统教育部重点实验室
@@ -241,10 +236,10 @@
     </header>
 
     <main class="container mx-auto px-4 relative z-20">
-        <!-- 关于我（双语） -->
+        <!-- 关于我 -->
         <section id="about" class="max-w-4xl mx-auto mb-20">
             <!-- 英文 -->
-            <div class="lang-en">
+            <div class="content-en">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
                     <i class="fa fa-user-circle mr-2"></i>About
                 </h2>
@@ -259,7 +254,7 @@
             </div>
 
             <!-- 中文 -->
-            <div class="lang-zh">
+            <div class="content-zh">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
                     <i class="fa fa-user-circle mr-2"></i>关于我
                 </h2>
@@ -277,10 +272,10 @@
             </div>
         </section>
 
-        <!-- 研究方向（双语） -->
+        <!-- 研究方向 -->
         <section id="research" class="max-w-4xl mx-auto mb-20">
             <!-- 英文 -->
-            <div class="lang-en">
+            <div class="content-en">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
                     <i class="fa fa-sitemap mr-2"></i>Research Interests
                 </h2>
@@ -307,7 +302,7 @@
             </div>
 
             <!-- 中文 -->
-            <div class="lang-zh">
+            <div class="content-zh">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
                     <i class="fa fa-sitemap mr-2"></i>研究方向
                 </h2>
@@ -334,14 +329,14 @@
             </div>
         </section>
 
-        <!-- 代表作（论文标题保持英文，期刊名统一全称） -->
+        <!-- 代表作 -->
         <section id="pub" class="max-w-4xl mx-auto mb-20">
             <!-- 英文标题 -->
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberMagenta title-glow-low-purple lang-en">
+            <h2 class="content-en text-2xl md:text-3xl font-bold mb-8 text-cyberMagenta title-glow-low-purple">
                 <i class="fa fa-star mr-2"></i>Selected Publications
             </h2>
             <!-- 中文标题 -->
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberMagenta title-glow-low-purple lang-zh">
+            <h2 class="content-zh text-2xl md:text-3xl font-bold mb-8 text-cyberMagenta title-glow-low-purple">
                 <i class="fa fa-star mr-2"></i>精选代表作
             </h2>
 
@@ -418,19 +413,19 @@
             </div>
 
             <div class="text-center mt-10">
-                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover inline-block px-8 py-3 lang-en">
+                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="content-en cyber-cut cyber-border card-hover inline-block px-8 py-3">
                     <i class="fa fa-external-link mr-2"></i>View All on Google Scholar
                 </a>
-                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover inline-block px-8 py-3 lang-zh">
+                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="content-zh cyber-cut cyber-border card-hover inline-block px-8 py-3">
                     <i class="fa fa-external-link mr-2"></i>查看全部学术成果
                 </a>
             </div>
         </section>
 
-        <!-- 研究成果（双语） -->
+        <!-- 研究成果 -->
         <section id="ach" class="max-w-4xl mx-auto mb-20">
             <!-- 英文 -->
-            <div class="lang-en">
+            <div class="content-en">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberYellow title-glow-low-yellow">
                     <i class="fa fa-trophy mr-2"></i>Research Highlights
                 </h2>
@@ -461,7 +456,7 @@
             </div>
 
             <!-- 中文 -->
-            <div class="lang-zh">
+            <div class="content-zh">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberYellow title-glow-low-yellow">
                     <i class="fa fa-trophy mr-2"></i>研究亮点
                 </h2>
@@ -492,10 +487,10 @@
             </div>
         </section>
 
-        <!-- 联系方式（双语） -->
+        <!-- 联系方式 -->
         <section id="contact" class="max-w-4xl mx-auto mb-16">
             <!-- 英文 -->
-            <div class="lang-en">
+            <div class="content-en">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
                     <i class="fa fa-envelope mr-2"></i>Contact
                 </h2>
@@ -517,7 +512,7 @@
             </div>
 
             <!-- 中文 -->
-            <div class="lang-zh">
+            <div class="content-zh">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
                     <i class="fa fa-envelope mr-2"></i>联系方式
                 </h2>
@@ -540,67 +535,48 @@
         </section>
     </main>
 
-    <!-- 页脚（双语） -->
+    <!-- 页脚 -->
     <footer class="border-t border-cyberCyan/20 py-6 text-center text-gray-500 text-sm">
-        <p class="lang-en">© 2025 Yue Ma. All Rights Reserved.</p>
-        <p class="lang-zh">© 2025 马越. All Rights Reserved.</p>
+        <p class="content-en">© 2025 Yue Ma. All Rights Reserved.</p>
+        <p class="content-zh">© 2025 马越. All Rights Reserved.</p>
         <p class="mt-1">Nanjing University of Science and Technology</p>
     </footer>
 
     <script>
-        // 语言切换功能
-        const langEnElements = document.querySelectorAll('.lang-en');
-        const langZhElements = document.querySelectorAll('.lang-zh');
-        const langActiveClass = 'lang-active';
+        // 语言切换功能（修复版）
+        const body = document.body;
+        const langEnBtn = document.getElementById('langEnBtn');
+        const langZhBtn = document.getElementById('langZhBtn');
+        const langEnBtnMobile = document.getElementById('langEnBtnMobile');
+        const langZhBtnMobile = document.getElementById('langZhBtnMobile');
 
-        function switchToEnglish() {
-            langEnElements.forEach(el => el.style.display = '');
-            langZhElements.forEach(el => el.style.display = 'none');
-            document.documentElement.lang = 'en';
+        function setLanguage(lang) {
+            body.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang;
             
             // 更新按钮状态
-            document.querySelectorAll('#langEnBtn, #langEnBtnZh, #langEnBtnMobile').forEach(btn => {
-                if(btn) btn.classList.add(langActiveClass);
-            });
-            document.querySelectorAll('#langZhBtn, #langZhBtnZh, #langZhBtnMobile').forEach(btn => {
-                if(btn) {
-                    btn.classList.remove(langActiveClass);
-                    btn.classList.add('text-gray-400');
-                }
-            });
+            if(lang === 'en') {
+                langEnBtn.classList.add('lang-active');
+                langZhBtn.classList.remove('lang-active');
+                langEnBtnMobile.classList.add('lang-active');
+                langZhBtnMobile.classList.remove('lang-active');
+            } else {
+                langZhBtn.classList.add('lang-active');
+                langEnBtn.classList.remove('lang-active');
+                langZhBtnMobile.classList.add('lang-active');
+                langEnBtnMobile.classList.remove('lang-active');
+            }
         }
 
-        function switchToChinese() {
-            langEnElements.forEach(el => el.style.display = 'none');
-            langZhElements.forEach(el => el.style.display = '');
-            document.documentElement.lang = 'zh';
-            
-            // 更新按钮状态
-            document.querySelectorAll('#langZhBtn, #langZhBtnZh, #langZhBtnMobile').forEach(btn => {
-                if(btn) {
-                    btn.classList.add(langActiveClass);
-                    btn.classList.remove('text-gray-400');
-                }
-            });
-            document.querySelectorAll('#langEnBtn, #langEnBtnZh, #langEnBtnMobile').forEach(btn => {
-                if(btn) btn.classList.remove(langActiveClass);
-            });
-        }
-
-        // 绑定所有语言切换按钮
-        document.querySelectorAll('#langEnBtn, #langEnBtnZh, #langEnBtnMobile').forEach(btn => {
-            if(btn) btn.addEventListener('click', switchToEnglish);
-        });
-        document.querySelectorAll('#langZhBtn, #langZhBtnZh, #langZhBtnMobile').forEach(btn => {
-            if(btn) btn.addEventListener('click', switchToChinese);
-        });
+        // 绑定事件
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+        langZhBtn.addEventListener('click', () => setLanguage('zh'));
+        langEnBtnMobile.addEventListener('click', () => setLanguage('en'));
+        langZhBtnMobile.addEventListener('click', () => setLanguage('zh'));
 
         // 移动端菜单
         document.getElementById('menuBtn').addEventListener('click', function() {
-            const menuEn = document.getElementById('mobileMenuEn');
-            const menuZh = document.getElementById('mobileMenuZh');
-            if(menuEn) menuEn.classList.toggle('hidden');
-            if(menuZh) menuZh.classList.toggle('hidden');
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         });
 
         // 平滑滚动
@@ -609,14 +585,12 @@
                 e.preventDefault();
                 const tar = document.querySelector(this.getAttribute('href'));
                 if(tar) tar.scrollIntoView({behavior: 'smooth'});
-                // 关闭移动端菜单
-                document.getElementById('mobileMenuEn')?.classList.add('hidden');
-                document.getElementById('mobileMenuZh')?.classList.add('hidden');
+                document.getElementById('mobileMenu')?.classList.add('hidden');
             });
         });
 
-        // 默认显示英文
-        switchToEnglish();
+        // 默认英文
+        setLanguage('en');
     </script>
 </body>
 </html>
