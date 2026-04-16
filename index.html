@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YUE MA | 马越 - 南京理工大学</title>
+    <title>YUE MA | Nanjing University of Science and Technology</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -22,17 +22,12 @@
                     },
                     animation: {
                         borderFlow: 'borderFlow 8s linear infinite',
-                        slowPulse: 'slowPulse 5s ease-in-out infinite',
                         floatSoft: 'floatSoft 7s ease-in-out infinite',
                     },
                     keyframes: {
                         borderFlow: {
                             '0%': { backgroundPosition: '0% 50%' },
                             '100%': { backgroundPosition: '200% 50%' }
-                        },
-                        slowPulse: {
-                            '0%,100%': { opacity: 0.6 },
-                            '50%': { opacity: 0.9 }
                         },
                         floatSoft: {
                             '0%,100%': { transform: 'translateY(0)' },
@@ -45,7 +40,6 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            /* 弱化版标题柔光，无强闪光、不晃眼 */
             .title-glow-low {
                 text-shadow: 0 0 4px #00f0f8, 0 0 8px #00f0f866;
             }
@@ -97,6 +91,12 @@
             body {
                 background-color: #050712;
             }
+            /* 语言切换控制 */
+            .lang-zh { display: none; }
+            .lang-active {
+                color: #00f0f8 !important;
+                text-shadow: 0 0 4px #00f0f8;
+            }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,44 +106,73 @@
 <body class="text-gray-200 min-h-screen overflow-x-hidden font-cyber">
     <!-- 全局弱化扫描线 -->
     <div class="fixed inset-0 scan-line pointer-events-none z-10 opacity-60"></div>
-    <!-- 柔和动态光晕 不刺眼 -->
+    <!-- 柔和动态光晕 -->
     <div class="fixed inset-0 pointer-events-none z-0">
         <div class="absolute top-1/4 left-1/5 w-80 h-80 rounded-full bg-cyberCyan/10 blur-3xl animate-floatSoft"></div>
         <div class="absolute bottom-1/4 right-1/5 w-72 h-72 rounded-full bg-cyberMagenta/10 blur-3xl animate-floatSoft" style="animation-delay: 2s;"></div>
     </div>
 
-    <!-- 导航栏 -->
+    <!-- 导航栏（含语言切换） -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-cyberDark/85 backdrop-blur-md border-b border-cyberCyan/20">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-cyberCyan title-glow-low">YUE MA</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="hover:text-cyberCyan transition-colors duration-300 relative">
-                    关于我
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span>
-                </a>
-                <a href="#research" class="hover:text-cyberCyan transition-colors duration-300 relative">
-                    研究方向
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span>
-                </a>
-                <a href="#pub" class="hover:text-cyberCyan transition-colors duration-300 relative">
-                    代表作
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span>
-                </a>
-                <a href="#ach" class="hover:text-cyberCyan transition-colors duration-300 relative">
-                    研究成果
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span>
-                </a>
-                <a href="#contact" class="hover:text-cyberCyan transition-colors duration-300 relative">
-                    联系方式
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span>
-                </a>
+            
+            <!-- 英文导航 -->
+            <div class="hidden md:flex space-x-8 items-center lang-en">
+                <a href="#about" class="hover:text-cyberCyan transition-colors duration-300 relative">About<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#research" class="hover:text-cyberCyan transition-colors duration-300 relative">Research<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#pub" class="hover:text-cyberCyan transition-colors duration-300 relative">Publications<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#ach" class="hover:text-cyberCyan transition-colors duration-300 relative">Highlights<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#contact" class="hover:text-cyberCyan transition-colors duration-300 relative">Contact<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <!-- 语言切换按钮 -->
+                <div class="flex items-center space-x-2 ml-4 border-l border-cyberCyan/30 pl-4">
+                    <button id="langEnBtn" class="lang-active hover:opacity-80 transition-opacity">EN</button>
+                    <span class="text-gray-500">/</span>
+                    <button id="langZhBtn" class="text-gray-400 hover:text-cyberCyan transition-colors">中文</button>
+                </div>
             </div>
-            <button id="menuBtn" class="md:hidden text-cyberCyan text-xl">
-                <i class="fa fa-bars"></i>
-            </button>
+
+            <!-- 中文导航 -->
+            <div class="hidden md:flex space-x-8 items-center lang-zh">
+                <a href="#about" class="hover:text-cyberCyan transition-colors duration-300 relative">关于我<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#research" class="hover:text-cyberCyan transition-colors duration-300 relative">研究方向<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#pub" class="hover:text-cyberCyan transition-colors duration-300 relative">代表作<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#ach" class="hover:text-cyberCyan transition-colors duration-300 relative">研究成果<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <a href="#contact" class="hover:text-cyberCyan transition-colors duration-300 relative">联系方式<span class="absolute left-0 bottom-0 w-0 h-0.5 bg-cyberCyan transition-all duration-300 hover:w-full"></span></a>
+                <!-- 语言切换按钮 -->
+                <div class="flex items-center space-x-2 ml-4 border-l border-cyberCyan/30 pl-4">
+                    <button id="langEnBtnZh" class="text-gray-400 hover:text-cyberCyan transition-colors">EN</button>
+                    <span class="text-gray-500">/</span>
+                    <button id="langZhBtnZh" class="lang-active hover:opacity-80 transition-opacity">中文</button>
+                </div>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+            <div class="md:hidden flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <button id="langEnBtnMobile" class="lang-active text-sm">EN</button>
+                    <span class="text-gray-500 text-sm">/</span>
+                    <button id="langZhBtnMobile" class="text-gray-400 text-sm">中文</button>
+                </div>
+                <button id="menuBtn" class="text-cyberCyan text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
         </div>
-        <!-- 移动端菜单 -->
-        <div id="mobileMenu" class="hidden md:hidden bg-cyberCard/95 border-b border-cyberCyan/20">
+
+        <!-- 移动端菜单（英文） -->
+        <div id="mobileMenuEn" class="hidden md:hidden bg-cyberCard/95 border-b border-cyberCyan/20 lang-en">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#about" class="hover:text-cyberCyan transition-colors">About</a>
+                <a href="#research" class="hover:text-cyberCyan transition-colors">Research</a>
+                <a href="#pub" class="hover:text-cyberCyan transition-colors">Publications</a>
+                <a href="#ach" class="hover:text-cyberCyan transition-colors">Highlights</a>
+                <a href="#contact" class="hover:text-cyberCyan transition-colors">Contact</a>
+            </div>
+        </div>
+
+        <!-- 移动端菜单（中文） -->
+        <div id="mobileMenuZh" class="hidden md:hidden bg-cyberCard/95 border-b border-cyberCyan/20 lang-zh">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
                 <a href="#about" class="hover:text-cyberCyan transition-colors">关于我</a>
                 <a href="#research" class="hover:text-cyberCyan transition-colors">研究方向</a>
@@ -154,94 +183,177 @@
         </div>
     </nav>
 
-    <!-- 头部 -->
+    <!-- 头部（双语） -->
     <header class="relative pt-32 pb-24">
         <div class="container mx-auto px-4 text-center relative z-20">
-            <div class="mb-3">
-                <span class="px-4 py-1 border border-cyberCyan/30 cyber-cut text-cyberCyan text-sm">
-                    <i class="fa fa-microchip mr-2"></i>近程射频感知芯片与微系统教育部重点实验室
-                </span>
+            <!-- 英文头部 -->
+            <div class="lang-en">
+                <div class="mb-3">
+                    <span class="px-4 py-1 border border-cyberCyan/30 cyber-cut text-cyberCyan text-sm">
+                        <i class="fa fa-microchip mr-2"></i>Key Lab of Near-Range RF Perception Chips & Microsystems, MOE
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="text-cyberCyan title-glow-low">YUE</span>
+                    <span class="text-cyberMagenta title-glow-low-purple ml-2">MA</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-2">Associate Professor</p>
+                <p class="text-gray-400 mb-8">School of Microelectronics (School of ICs)<br>Nanjing University of Science and Technology</p>
+                <div class="flex justify-center flex-wrap gap-4">
+                    <a href="mailto:mayue@njust.edu.cn" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberCyan">
+                        <i class="fa fa-envelope mr-2"></i>Contact
+                    </a>
+                    <a href="#pub" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberMagenta">
+                        <i class="fa fa-file-text-o mr-2"></i>Publications
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberYellow">
+                        <i class="fa fa-graduation-cap mr-2"></i>Google Scholar
+                    </a>
+                </div>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                <span class="text-cyberCyan title-glow-low">YUE</span>
-                <span class="text-cyberMagenta title-glow-low-purple ml-2">MA</span>
-            </h1>
-            <p class="text-xl text-gray-300 mb-2">马越 / 副教授</p>
-            <p class="text-gray-400 mb-8">南京理工大学 · 微电子学院（集成电路学院）</p>
-            <div class="flex justify-center flex-wrap gap-4">
-                <a href="mailto:mayue@njust.edu.cn" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberCyan">
-                    <i class="fa fa-envelope mr-2"></i>联系我
-                </a>
-                <a href="#pub" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberMagenta">
-                    <i class="fa fa-file-text-o mr-2"></i>代表作
-                </a>
-                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberYellow">
-                    <i class="fa fa-graduation-cap mr-2"></i>Google Scholar
-                </a>
+
+            <!-- 中文头部 -->
+            <div class="lang-zh">
+                <div class="mb-3">
+                    <span class="px-4 py-1 border border-cyberCyan/30 cyber-cut text-cyberCyan text-sm">
+                        <i class="fa fa-microchip mr-2"></i>近程射频感知芯片与微系统教育部重点实验室
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="text-cyberCyan title-glow-low">YUE</span>
+                    <span class="text-cyberMagenta title-glow-low-purple ml-2">MA</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-2">马越 / 副教授</p>
+                <p class="text-gray-400 mb-8">南京理工大学 · 微电子学院（集成电路学院）</p>
+                <div class="flex justify-center flex-wrap gap-4">
+                    <a href="mailto:mayue@njust.edu.cn" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberCyan">
+                        <i class="fa fa-envelope mr-2"></i>联系我
+                    </a>
+                    <a href="#pub" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberMagenta">
+                        <i class="fa fa-file-text-o mr-2"></i>代表作
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover px-6 py-3 text-cyberYellow">
+                        <i class="fa fa-graduation-cap mr-2"></i>Google Scholar
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="container mx-auto px-4 relative z-20">
-        <!-- 关于我 -->
+        <!-- 关于我（双语） -->
         <section id="about" class="max-w-4xl mx-auto mb-20">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
-                <i class="fa fa-user-circle mr-2"></i>关于我
-            </h2>
-            <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
-                <p class="mb-4 leading-relaxed">
-                    现任南京理工大学微电子学院副教授，研究团队隶属于<strong class="text-cyberCyan">近程射频感知芯片与微系统教育部重点实验室</strong>，长期聚焦射频感知、阵列信号处理、隐蔽通信与电磁调控领域研究。
-                </p>
-                <p class="mb-4 leading-relaxed">
-                    依托江北新区研创园高端实验平台，拥有芯片探针测试、EDA设计、射频通信测试等完备硬件条件，为研究生提供系统化科研训练与工程实践支撑。
-                </p>
-                <p class="leading-relaxed">
-                    团队深度结合国防与民用需求，依托低空智能无人装备协同创新联盟，推动理论研究、芯片设计与工程应用落地结合。
-                </p>
+            <!-- 英文 -->
+            <div class="lang-en">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
+                    <i class="fa fa-user-circle mr-2"></i>About
+                </h2>
+                <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
+                    <p class="mb-4 leading-relaxed">
+                        Dr. Yue Ma is currently an Associate Professor at the School of Microelectronics, Nanjing University of Science and Technology. His research group is affiliated with the <strong class="text-cyberCyan">Key Laboratory of Near-Range Radio Frequency Perception Chips and Microsystems, Ministry of Education</strong>, focusing on cutting-edge research in RF perception, array signal processing, covert communication, and electromagnetic control.
+                    </p>
+                    <p class="mb-4 leading-relaxed">
+                        Supported by advanced experimental platforms in Jiangbei New District, his group provides systematic research training and engineering practice for graduate students, with access to chip probe testing, EDA design, and RF communication testing facilities.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 中文 -->
+            <div class="lang-zh">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
+                    <i class="fa fa-user-circle mr-2"></i>关于我
+                </h2>
+                <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
+                    <p class="mb-4 leading-relaxed">
+                        现任南京理工大学微电子学院副教授，研究团队隶属于<strong class="text-cyberCyan">近程射频感知芯片与微系统教育部重点实验室</strong>，长期聚焦射频感知、阵列信号处理、隐蔽通信与电磁调控领域研究。
+                    </p>
+                    <p class="mb-4 leading-relaxed">
+                        依托江北新区研创园高端实验平台，拥有芯片探针测试、EDA设计、射频通信测试等完备硬件条件，为研究生提供系统化科研训练与工程实践支撑。
+                    </p>
+                    <p class="leading-relaxed">
+                        团队深度结合国防与民用需求，依托低空智能无人装备协同创新联盟，推动理论研究、芯片设计与工程应用落地结合。
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- 研究方向 -->
+        <!-- 研究方向（双语） -->
         <section id="research" class="max-w-4xl mx-auto mb-20">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
-                <i class="fa fa-sitemap mr-2"></i>研究方向
-            </h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="cyber-border cyber-cut card-hover p-6 bg-cyberCard">
-                    <h3 class="text-xl font-bold text-cyberCyan mb-4">电子科学与技术</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-shield text-cyberCyan mr-3"></i>雷达隐身技术</li>
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-magnet text-cyberCyan mr-3"></i>电磁调控技术</li>
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-crosshairs text-cyberCyan mr-3"></i>电子对抗系统</li>
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-rss text-cyberCyan mr-3"></i>射频信号处理</li>
-                    </ul>
+            <!-- 英文 -->
+            <div class="lang-en">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
+                    <i class="fa fa-sitemap mr-2"></i>Research Interests
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="cyber-border cyber-cut card-hover p-6 bg-cyberCard">
+                        <h3 class="text-xl font-bold text-cyberCyan mb-4">Electronic Science & Technology</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-shield text-cyberCyan mr-3"></i>Radar Stealth Technology</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-magnet text-cyberCyan mr-3"></i>Electromagnetic Control</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-crosshairs text-cyberCyan mr-3"></i>Electronic Countermeasures</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-rss text-cyberCyan mr-3"></i>RF Signal Processing</li>
+                        </ul>
+                    </div>
+                    <div class="cyber-border cyber-cut card-hover p-6 bg-cyberCard">
+                        <h3 class="text-xl font-bold text-cyberMagenta mb-4">Information & Communication Engineering</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-lock text-cyberMagenta mr-3"></i>Covert Communication</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-th text-cyberMagenta mr-3"></i>Time-Modulated Array Processing</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-cube text-cyberMagenta mr-3"></i>Intelligent Metasurface</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-ban text-cyberMagenta mr-3"></i>Anti-Jamming Transmission</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="cyber-border cyber-cut card-hover p-6 bg-cyberCard">
-                    <h3 class="text-xl font-bold text-cyberMagenta mb-4">信息与通信工程</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-lock text-cyberMagenta mr-3"></i>隐蔽安全通信</li>
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-th text-cyberMagenta mr-3"></i>时调阵列信号处理</li>
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-cube text-cyberMagenta mr-3"></i>智能超表面通信</li>
-                        <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-ban text-cyberMagenta mr-3"></i>抗干扰传输技术</li>
-                    </ul>
+            </div>
+
+            <!-- 中文 -->
+            <div class="lang-zh">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
+                    <i class="fa fa-sitemap mr-2"></i>研究方向
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="cyber-border cyber-cut card-hover p-6 bg-cyberCard">
+                        <h3 class="text-xl font-bold text-cyberCyan mb-4">电子科学与技术</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-shield text-cyberCyan mr-3"></i>雷达隐身技术</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-magnet text-cyberCyan mr-3"></i>电磁调控技术</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-crosshairs text-cyberCyan mr-3"></i>电子对抗系统</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-rss text-cyberCyan mr-3"></i>射频信号处理</li>
+                        </ul>
+                    </div>
+                    <div class="cyber-border cyber-cut card-hover p-6 bg-cyberCard">
+                        <h3 class="text-xl font-bold text-cyberMagenta mb-4">信息与通信工程</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-lock text-cyberMagenta mr-3"></i>隐蔽安全通信</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-th text-cyberMagenta mr-3"></i>时调阵列信号处理</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-cube text-cyberMagenta mr-3"></i>智能超表面通信</li>
+                            <li class="flex items-center hover:translate-x-2 transition-transform"><i class="fa fa-ban text-cyberMagenta mr-3"></i>抗干扰传输技术</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 代表作【期刊名称全统一为完整全称】 -->
+        <!-- 代表作（论文标题保持英文，期刊名统一全称） -->
         <section id="pub" class="max-w-4xl mx-auto mb-20">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberMagenta title-glow-low-purple">
+            <!-- 英文标题 -->
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberMagenta title-glow-low-purple lang-en">
+                <i class="fa fa-star mr-2"></i>Selected Publications
+            </h2>
+            <!-- 中文标题 -->
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberMagenta title-glow-low-purple lang-zh">
                 <i class="fa fa-star mr-2"></i>精选代表作
             </h2>
+
             <div class="space-y-5">
-                <!-- 1 新增指定文献 -->
+                <!-- 1 -->
                 <div class="cyber-border cyber-cut card-hover p-5 bg-cyberCard border-l-4 border-cyberCyan">
                     <div class="flex justify-between items-start mb-2">
                         <h4 class="font-semibold text-white">Distributed Split Single-Sideband Time-Modulated Arrays for Secure Communications</h4>
                         <span class="px-2 py-1 rounded text-cyberCyan bg-cyberCyan/10 text-xs">NEW</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-2">Y Ma, R Ma, Z Lin, C Miao, R Zhang, W Long, W Wu, J Wang</p>
-                    <p class="text-cyberCyan/90 text-sm">IEEE Internet of Things Journal, 2026</p>
+                    <p class="text-cyberCyan/90 text-sm">IEEE Internet of Things Journal</p>
                 </div>
 
                 <!-- 2 -->
@@ -251,7 +363,7 @@
                         <span class="px-2 py-1 rounded text-cyberCyan bg-cyberCyan/10 text-xs">57 Citations</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-2">Y Ma, R Ma, Z Lin, R Zhang, Y Cai, W Wu, J Wang</p>
-                    <p class="text-cyberCyan/90 text-sm">IEEE Internet of Things Journal, 2025</p>
+                    <p class="text-cyberCyan/90 text-sm">IEEE Internet of Things Journal, 2024</p>
                 </div>
 
                 <!-- 3 -->
@@ -261,7 +373,7 @@
                         <span class="px-2 py-1 rounded text-cyberMagenta bg-cyberMagenta/10 text-xs">35 Citations</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-2">G Chen, R Zhang, H Zhang, C Miao, Y Ma, W Wu</p>
-                    <p class="text-cyberMagenta/90 text-sm">IEEE Communications Letters, 2025</p>
+                    <p class="text-cyberMagenta/90 text-sm">IEEE Communications Letters, 2024</p>
                 </div>
 
                 <!-- 4 -->
@@ -271,7 +383,7 @@
                         <span class="px-2 py-1 rounded text-cyberYellow bg-cyberYellow/10 text-xs">17 Citations</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-2">Y Ma, C Miao, W Long, R Zhang, Q Chen, J Zhang, W Wu</p>
-                    <p class="text-cyberYellow/90 text-sm">IEEE Transactions on Aerospace and Electronic Systems, 2024</p>
+                    <p class="text-cyberYellow/90 text-sm">IEEE Transactions on Aerospace and Electronic Systems, 2023</p>
                 </div>
 
                 <!-- 5 -->
@@ -281,7 +393,7 @@
                         <span class="px-2 py-1 rounded text-cyberCyan bg-cyberCyan/10 text-xs">15 Citations</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-2">Y Ma, C Miao, YH Li, W Wu</p>
-                    <p class="text-cyberCyan/90 text-sm">IEEE Transactions on Antennas and Propagation, 2021</p>
+                    <p class="text-cyberCyan/90 text-sm">IEEE Transactions on Antennas and Propagation, 2020</p>
                 </div>
 
                 <!-- 6 -->
@@ -291,7 +403,7 @@
                         <span class="px-2 py-1 rounded text-cyberMagenta bg-cyberMagenta/10 text-xs">11 Citations</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-2">R Ma, Y Ma, Z Lin, Y Ma, W Yang, D Niyato</p>
-                    <p class="text-cyberMagenta/90 text-sm">IEEE Communications Letters, 2026</p>
+                    <p class="text-cyberMagenta/90 text-sm">IEEE Communications Letters, 2025</p>
                 </div>
 
                 <!-- 7 -->
@@ -301,91 +413,210 @@
                         <span class="px-2 py-1 rounded text-cyberYellow bg-cyberYellow/10 text-xs">9 Citations</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-2">Y Ma, R Ma, W Yang, C Miao, Y Cai, W Wu</p>
-                    <p class="text-cyberYellow/90 text-sm">IEEE Wireless Communications Letters, 2024</p>
+                    <p class="text-cyberYellow/90 text-sm">IEEE Wireless Communications Letters, 2023</p>
                 </div>
             </div>
 
             <div class="text-center mt-10">
-                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover inline-block px-8 py-3">
+                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover inline-block px-8 py-3 lang-en">
+                    <i class="fa fa-external-link mr-2"></i>View All on Google Scholar
+                </a>
+                <a href="https://scholar.google.com/citations?user=your_google_scholar_id" target="_blank" class="cyber-cut cyber-border card-hover inline-block px-8 py-3 lang-zh">
                     <i class="fa fa-external-link mr-2"></i>查看全部学术成果
                 </a>
             </div>
         </section>
 
-        <!-- 研究成果 -->
+        <!-- 研究成果（双语） -->
         <section id="ach" class="max-w-4xl mx-auto mb-20">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberYellow title-glow-low-yellow">
-                <i class="fa fa-trophy mr-2"></i>研究亮点
-            </h2>
-            <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
-                <h3 class="text-xl font-bold text-cyberYellow mb-4">基于杂波对消技术的机动式机场异物检测(FOD)系统</h3>
-                <p class="text-gray-300 mb-6">
-                    融合毫米波雷达、光学成像与AI识别算法，实现跑道、滑行道全时段无人监测，已完成多地机场落地试用。
-                </p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
-                        <p class="text-cyberYellow font-bold">93 GHz</p>
-                        <p class="text-xs text-gray-400">工作频段</p>
+            <!-- 英文 -->
+            <div class="lang-en">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberYellow title-glow-low-yellow">
+                    <i class="fa fa-trophy mr-2"></i>Research Highlights
+                </h2>
+                <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
+                    <h3 class="text-xl font-bold text-cyberYellow mb-4">Mobile FOD Detection System Based on Clutter Cancellation</h3>
+                    <p class="text-gray-300 mb-6">
+                        Integrated mmWave radar, optical imaging, and AI recognition for all-weather, autonomous monitoring of runway foreign object debris (FOD) and pavement defects, with field trials completed at multiple international airports.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">93 GHz</p>
+                            <p class="text-xs text-gray-400">Operating Band</p>
+                        </div>
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">5~42m</p>
+                            <p class="text-xs text-gray-400">Detection Range</p>
+                        </div>
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">≥95%</p>
+                            <p class="text-xs text-gray-400">Accuracy</p>
+                        </div>
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">All-Weather</p>
+                            <p class="text-xs text-gray-400">Robustness</p>
+                        </div>
                     </div>
-                    <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
-                        <p class="text-cyberYellow font-bold">5~42m</p>
-                        <p class="text-xs text-gray-400">探测距离</p>
-                    </div>
-                    <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
-                        <p class="text-cyberYellow font-bold">≥95%</p>
-                        <p class="text-xs text-gray-400">识别准确率</p>
-                    </div>
-                    <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
-                        <p class="text-cyberYellow font-bold">全天候</p>
-                        <p class="text-xs text-gray-400">复杂环境适配</p>
+                </div>
+            </div>
+
+            <!-- 中文 -->
+            <div class="lang-zh">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberYellow title-glow-low-yellow">
+                    <i class="fa fa-trophy mr-2"></i>研究亮点
+                </h2>
+                <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
+                    <h3 class="text-xl font-bold text-cyberYellow mb-4">基于杂波对消技术的机动式机场异物检测(FOD)系统</h3>
+                    <p class="text-gray-300 mb-6">
+                        融合毫米波雷达、光学成像与AI识别算法，实现跑道、滑行道全时段无人监测，已完成多地机场落地试用。
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">93 GHz</p>
+                            <p class="text-xs text-gray-400">工作频段</p>
+                        </div>
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">5~42m</p>
+                            <p class="text-xs text-gray-400">探测距离</p>
+                        </div>
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">≥95%</p>
+                            <p class="text-xs text-gray-400">识别准确率</p>
+                        </div>
+                        <div class="border border-cyberYellow/20 rounded p-3 text-center card-hover">
+                            <p class="text-cyberYellow font-bold">全天候</p>
+                            <p class="text-xs text-gray-400">复杂环境适配</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 联系方式 -->
+        <!-- 联系方式（双语） -->
         <section id="contact" class="max-w-4xl mx-auto mb-16">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
-                <i class="fa fa-envelope mr-2"></i>联系方式
-            </h2>
-            <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h3 class="text-lg font-bold text-cyberCyan mb-3">招生信息</h3>
-                        <p class="text-gray-300">常年招收电子科学与技术、信息与通信工程方向硕士研究生，欢迎感兴趣同学邮件咨询。</p>
+            <!-- 英文 -->
+            <div class="lang-en">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
+                    <i class="fa fa-envelope mr-2"></i>Contact
+                </h2>
+                <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-cyberCyan mb-3">Prospective Students</h3>
+                            <p class="text-gray-300">Master's candidates in Electronic Science & Technology and Information & Communication Engineering are welcome to contact via email.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-cyberCyan mb-3">Email</h3>
+                            <a href="mailto:mayue@njust.edu.cn" class="text-cyberCyan hover:opacity-80 transition-opacity">
+                                mayue@njust.edu.cn
+                            </a>
+                            <p class="text-gray-400 text-sm mt-2">Nanjing University of Science and Technology<br>Nanjing, Jiangsu, China</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-cyberCyan mb-3">联系邮箱</h3>
-                        <a href="mailto:mayue@njust.edu.cn" class="text-cyberCyan hover:opacity-80 transition-opacity">
-                            mayue@njust.edu.cn
-                        </a>
-                        <p class="text-gray-400 text-sm mt-2">江苏省南京市 · 南京理工大学</p>
+                </div>
+            </div>
+
+            <!-- 中文 -->
+            <div class="lang-zh">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-cyberCyan title-glow-low">
+                    <i class="fa fa-envelope mr-2"></i>联系方式
+                </h2>
+                <div class="cyber-border cyber-cut card-hover p-6 md:p-8 bg-cyberCard">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-cyberCyan mb-3">招生信息</h3>
+                            <p class="text-gray-300">常年招收电子科学与技术、信息与通信工程方向硕士研究生，欢迎感兴趣同学邮件咨询。</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-cyberCyan mb-3">联系邮箱</h3>
+                            <a href="mailto:mayue@njust.edu.cn" class="text-cyberCyan hover:opacity-80 transition-opacity">
+                                mayue@njust.edu.cn
+                            </a>
+                            <p class="text-gray-400 text-sm mt-2">江苏省南京市 · 南京理工大学</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 页脚 -->
+    <!-- 页脚（双语） -->
     <footer class="border-t border-cyberCyan/20 py-6 text-center text-gray-500 text-sm">
-        <p>© 2025 Yue Ma | 马越  All Rights Reserved</p>
+        <p class="lang-en">© 2025 Yue Ma. All Rights Reserved.</p>
+        <p class="lang-zh">© 2025 马越. All Rights Reserved.</p>
         <p class="mt-1">Nanjing University of Science and Technology</p>
     </footer>
 
     <script>
+        // 语言切换功能
+        const langEnElements = document.querySelectorAll('.lang-en');
+        const langZhElements = document.querySelectorAll('.lang-zh');
+        const langActiveClass = 'lang-active';
+
+        function switchToEnglish() {
+            langEnElements.forEach(el => el.style.display = '');
+            langZhElements.forEach(el => el.style.display = 'none');
+            document.documentElement.lang = 'en';
+            
+            // 更新按钮状态
+            document.querySelectorAll('#langEnBtn, #langEnBtnZh, #langEnBtnMobile').forEach(btn => {
+                if(btn) btn.classList.add(langActiveClass);
+            });
+            document.querySelectorAll('#langZhBtn, #langZhBtnZh, #langZhBtnMobile').forEach(btn => {
+                if(btn) {
+                    btn.classList.remove(langActiveClass);
+                    btn.classList.add('text-gray-400');
+                }
+            });
+        }
+
+        function switchToChinese() {
+            langEnElements.forEach(el => el.style.display = 'none');
+            langZhElements.forEach(el => el.style.display = '');
+            document.documentElement.lang = 'zh';
+            
+            // 更新按钮状态
+            document.querySelectorAll('#langZhBtn, #langZhBtnZh, #langZhBtnMobile').forEach(btn => {
+                if(btn) {
+                    btn.classList.add(langActiveClass);
+                    btn.classList.remove('text-gray-400');
+                }
+            });
+            document.querySelectorAll('#langEnBtn, #langEnBtnZh, #langEnBtnMobile').forEach(btn => {
+                if(btn) btn.classList.remove(langActiveClass);
+            });
+        }
+
+        // 绑定所有语言切换按钮
+        document.querySelectorAll('#langEnBtn, #langEnBtnZh, #langEnBtnMobile').forEach(btn => {
+            if(btn) btn.addEventListener('click', switchToEnglish);
+        });
+        document.querySelectorAll('#langZhBtn, #langZhBtnZh, #langZhBtnMobile').forEach(btn => {
+            if(btn) btn.addEventListener('click', switchToChinese);
+        });
+
         // 移动端菜单
-        document.getElementById('menuBtn').addEventListener('click',function(){
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        })
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const menuEn = document.getElementById('mobileMenuEn');
+            const menuZh = document.getElementById('mobileMenuZh');
+            if(menuEn) menuEn.classList.toggle('hidden');
+            if(menuZh) menuZh.classList.toggle('hidden');
+        });
+
         // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(a=>{
-            a.addEventListener('click',function(e){
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
                 e.preventDefault();
                 const tar = document.querySelector(this.getAttribute('href'));
-                if(tar) tar.scrollIntoView({behavior:'smooth'});
-                document.getElementById('mobileMenu').classList.add('hidden');
-            })
-        })
+                if(tar) tar.scrollIntoView({behavior: 'smooth'});
+                // 关闭移动端菜单
+                document.getElementById('mobileMenuEn')?.classList.add('hidden');
+                document.getElementById('mobileMenuZh')?.classList.add('hidden');
+            });
+        });
+
+        // 默认显示英文
+        switchToEnglish();
     </script>
 </body>
 </html>
